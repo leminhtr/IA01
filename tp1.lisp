@@ -95,13 +95,13 @@
 (cles Test)
 
 (defun creation (listeCles listeValeurs) ;Retourne une a-liste à partir d'une liste de clés et de valeurs
-  (if (not (null listeCles))
+  (if (and (not (null listeCles)) (not (null listeValeurs)))
    (append (list (list (car listeCles) (car listeValeurs))) (creation (cdr listeCles) (cdr listeValeurs)))
   
    )
 )
 
-(creation '(A B C) '(1 2 3))
+(creation '(A B C) '(1 2 3 4))
 
 
 
