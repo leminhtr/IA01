@@ -161,17 +161,23 @@
 
 (FB3 BaseTest 'Hugo)
 
-(defun FB4 (database ann) ; Retourne le premier ouvrage paru en année ann ou nil
+
+(defun FB4 (database annee) ; Retourne le premier ouvrage paru en année ann ou nil
 	(dolist (x database)
-		(if (equal (annee x) ann) (progn (print x) (return))))
-	)
+		(if (equal (annee x) annee) (return x) nil))
+)
 (FB4 BaseTest '1831)
 
+
 (defun FB5 (database) ; Retourne la liste des ouvrages dont le nb d'exemplaires vendus dépasse 1000000 ou nil
-	(dolist (x database)
-		(if (> (nombre x) 1000000) (print x)))
-	)
+	(let (( nb '()))
+	(dolist (x BaseTest)
+		(if (> (nombre x) 1000000) (setq nb (append nb (list (titre x))))))
+	      nb
+	      )
+)
 (FB5 BaseTest)
+
 
 
 (defun FB6 (database aut) ; Calcule et retourne la moyenne du nombre d'exemplaires vendus de l'auteur aut
