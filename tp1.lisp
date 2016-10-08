@@ -72,3 +72,34 @@
 )
 
 
+					;Ex.3
+(defun cles (a-list) ; Renvoi les clés d'une a-list
+  (if (not (null a-list))
+  (append (list (caar a-list)) (cles (cdr a-list)))
+  
+  )
+  )
+
+(setq Test '((Moi 21) (MinhTri 21) (Bebe 1)))
+
+(cles Test)
+
+(defun creation (listeCles listeValeurs)
+  (if (not (null listeCles))
+   (append (list (list (car listeCles) (car listeValeurs))) (creation (cdr listeCles) (cdr listeValeurs)))
+  
+   )
+)
+
+(creation '(A B C) '(1 2 3))
+
+(cdr Test)
+
+(defun my-assoc (cle a-list)
+  (if (eq (caar a-list) cle)
+      (print (car a-list))
+    (my-assoc cle (cdr a-list))
+    )
+  )
+
+(my-assoc 'Bebe Test)
