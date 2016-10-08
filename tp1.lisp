@@ -103,3 +103,82 @@
   )
 
 (my-assoc 'Bebe Test)
+
+					;Ex.4
+(setq BaseTest '((" Le Dernier Jour d'un condamné " Hugo 1829 50000)
+(" Notre-Dame de Paris " Hugo 1831 3000000)
+(" Les Misérables " Hugo 1862 2000000)
+("Le Horla " Maupassant 1887 2000000)(" Contes de la bécasse " Maupassant 1883 500000)
+("Germinal " Zola 1885 3000000)
+))
+
+(defun auteur (ouvrage)
+  (cadr ouvrage)
+  )
+
+(auteur '("Notre-Dame de Paris" Hugo 1831 3000000))
+
+(defun titre (ouvrage)
+  (car ouvrage)
+  )
+
+(titre '("Notre-Dame de Paris" Hugo 1831 3000000))
+
+(defun annee (ouvrage)
+  (caddr  ouvrage)
+  )
+  
+(annee '(" Notre-Dame de Paris " Hugo 1831 3000000))
+
+(defun nombre (ouvrage)
+  (cadddr  ouvrage)
+  )
+  
+(nombre '(" Notre-Dame de Paris " Hugo 1831 3000000))
+
+(defun FB1 (database)
+  database
+  )
+
+(FB1 BaseTest)
+
+
+(defun FB2 (database)
+	(dolist (x database)
+		(if (equal (auteur x) 'Hugo) (print x)))
+	)
+(FB2 BaseTest)
+
+(defun FB3(database auteur)
+	(setq s '())
+	(dolist (x database)
+   		(if (equal (auteur x) auteur) (setq s (append s (list (titre x))))))
+  	s
+)
+
+(FB3 BaseTest 'Hugo)
+
+(defun FB4 (database ann)
+	(dolist (x database)
+		(if (equal (annee x) ann) (progn (print x) (return))))
+	)
+(FB4 BaseTest '1831)
+
+(defun FB5 (database)
+	(dolist (x database)
+		(if (> (nombre x) 1000000) (print x)))
+	)
+(FB5 BaseTest)
+
+
+(defun FB6 (database aut)
+  (setq compt 0)
+  (setq nb 0)
+	(dolist (x database)
+		(if (eq aut (auteur x)) (progn (setq compt (+ compt 1)) (setq nb (+ nb (nombre x)))))
+		)
+	(/ nb compt)
+	)
+
+(FB6 BaseTest 'Hugo)
+
