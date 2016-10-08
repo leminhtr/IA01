@@ -79,7 +79,7 @@
 (defun my-assoc (cle a-list) ; Retourne la valeur d'une clé dans une liste d'associations
   (if (eq (caar a-list) cle)
       (print (car a-list))
-    (my-assoc cle (cdr a-list))
+    (if (not (null a-list)) (my-assoc cle (cdr a-list)))
     )
   )
 
