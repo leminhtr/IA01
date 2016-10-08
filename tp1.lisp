@@ -72,30 +72,11 @@
 )
 
 
-					;Ex.3
-(defun cles (a-list) ; Renvoi les clés d'une a-list
-  (if (not (null a-list))
-  (append (list (caar a-list)) (cles (cdr a-list)))
-  
-  )
-  )
-
+;Ex.3
+; Définition d'une a-list pour tester les fonctions
 (setq Test '((Moi 21) (MinhTri 21) (Bebe 1)))
 
-(cles Test)
-
-(defun creation (listeCles listeValeurs)
-  (if (not (null listeCles))
-   (append (list (list (car listeCles) (car listeValeurs))) (creation (cdr listeCles) (cdr listeValeurs)))
-  
-   )
-)
-
-(creation '(A B C) '(1 2 3))
-
-(cdr Test)
-
-(defun my-assoc (cle a-list)
+(defun my-assoc (cle a-list) ; Retourne la valeur d'une clé dans une liste d'associations
   (if (eq (caar a-list) cle)
       (print (car a-list))
     (my-assoc cle (cdr a-list))
@@ -104,7 +85,28 @@
 
 (my-assoc 'Bebe Test)
 
-					;Ex.4
+(defun cles (a-list) ; Renvoi les clés d'une a-list
+  (if (not (null a-list))
+  (append (list (caar a-list)) (cles (cdr a-list)))
+  
+  )
+  )
+
+(cles Test)
+
+(defun creation (listeCles listeValeurs) ;Retourne une a-liste à partir d'une liste de clés et de valeurs
+  (if (not (null listeCles))
+   (append (list (list (car listeCles) (car listeValeurs))) (creation (cdr listeCles) (cdr listeValeurs)))
+  
+   )
+)
+
+(creation '(A B C) '(1 2 3))
+
+
+
+
+;Ex.4
 (setq BaseTest '((" Le Dernier Jour d'un condamné " Hugo 1829 50000)
 (" Notre-Dame de Paris " Hugo 1831 3000000)
 (" Les Misérables " Hugo 1862 2000000)
@@ -112,44 +114,44 @@
 ("Germinal " Zola 1885 3000000)
 ))
 
-(defun auteur (ouvrage)
+(defun auteur (ouvrage) ; Retourne l'auteur de l'ouvrage passé en argument
   (cadr ouvrage)
   )
 
-(auteur '("Notre-Dame de Paris" Hugo 1831 3000000))
+(auteur '("Notre-Dame de Paris" Hugo 1831 3000000)) 
 
-(defun titre (ouvrage)
+(defun titre (ouvrage) ; Retourne le titre de l'ouvrage passé en argument
   (car ouvrage)
   )
 
 (titre '("Notre-Dame de Paris" Hugo 1831 3000000))
 
-(defun annee (ouvrage)
+(defun annee (ouvrage) ; Retourne l'année de l'ouvrage passé en argument
   (caddr  ouvrage)
   )
   
 (annee '(" Notre-Dame de Paris " Hugo 1831 3000000))
 
-(defun nombre (ouvrage)
+(defun nombre (ouvrage) ; Retourne le nombre d'exemplaire de l'ouvrage passé en argument
   (cadddr  ouvrage)
   )
   
 (nombre '(" Notre-Dame de Paris " Hugo 1831 3000000))
 
-(defun FB1 (database)
+(defun FB1 (database) ; Affiche tous les ouvrages de database
   database
   )
 
 (FB1 BaseTest)
 
 
-(defun FB2 (database)
+(defun FB2 (database) ; Affiche les ouvrages de l'auteur Hugo
 	(dolist (x database)
 		(if (equal (auteur x) 'Hugo) (print x)))
 	)
 (FB2 BaseTest)
 
-(defun FB3(database auteur)
+(defun FB3(database auteur) ; Retourne la liste des titres d'ouvrages dont l'auteur est auteur
 	(let (s '())
 	(dolist (x database)
    		(if (equal (auteur x) auteur) (setq s (append s (list (titre x))))))
@@ -159,20 +161,20 @@
 
 (FB3 BaseTest 'Hugo)
 
-(defun FB4 (database ann)
+(defun FB4 (database ann) ; Retourne le premier ouvrage paru en année ann ou nil
 	(dolist (x database)
 		(if (equal (annee x) ann) (progn (print x) (return))))
 	)
 (FB4 BaseTest '1831)
 
-(defun FB5 (database)
+(defun FB5 (database) ; Retourne la liste des ouvrages dont le nb d'exemplaires vendus dépasse 1000000 ou nil
 	(dolist (x database)
 		(if (> (nombre x) 1000000) (print x)))
 	)
 (FB5 BaseTest)
 
 
-(defun FB6 (database aut)
+(defun FB6 (database aut) ; Calcule et retourne la moyenne du nombre d'exemplaires vendus de l'auteur aut
   (let ((compt 0) (nb 0))
 	(dolist (x database)
 		(if (eq aut (auteur x)) (progn (setq compt (+ compt 1)) (setq nb (+ nb (nombre x)))))
