@@ -150,10 +150,11 @@
 (FB2 BaseTest)
 
 (defun FB3(database auteur)
-	(setq s '())
+	(let (s '())
 	(dolist (x database)
    		(if (equal (auteur x) auteur) (setq s (append s (list (titre x))))))
   	s
+	)
 )
 
 (FB3 BaseTest 'Hugo)
@@ -172,13 +173,11 @@
 
 
 (defun FB6 (database aut)
-  (setq compt 0)
-  (setq nb 0)
+  (let ((compt 0) (nb 0))
 	(dolist (x database)
 		(if (eq aut (auteur x)) (progn (setq compt (+ compt 1)) (setq nb (+ nb (nombre x)))))
 		)
 	(/ nb compt)
-	)
+	))
 
 (FB6 BaseTest 'Hugo)
-
