@@ -138,10 +138,10 @@
   
 (nombre '(" Notre-Dame de Paris " Hugo 1831 3000000))
 
-(defun FB1 (database) ; Affiche tous les ouvrages de database
-  database
-  )
-
+(defun FB1 (database)
+  (dolist (x database) 
+    (print  x))
+)
 (FB1 BaseTest)
 
 
