@@ -20,50 +20,75 @@
 (cadr (cons 'tiens (cons '(c est simple) ()))) ; cadr de (tiens (c est simple))=(c est simple)
 
 ;Q.4
-;Est-ce que : (a (b c) d) -> (a a (b b c c) (b b c c) d d) ou (a a (b c) (b c) d d)??
 
 (defun double (L)
 (if (listp L)
-(if (< 0 (length L))
-(append (list (car L) (car L)) (double(cdr L)))
-;(car L)
+	(if (< 0 (length L)) ; si not fin liste
+		(append
+		(list (car L) (car L)) (double(cdr L))) ; doubler élément puis réitérer avec reste liste
+	)
+	L
 )
-(nil)
+
+(defun double (L)
+(if (listp L)			 ; if liste
+	(if (< 0 (length L)) 	; if not fin liste
+		(append				 	; then créer liste en ajoutant double (1 par 1)
+		(if (listp (car L))  		; if sous-liste
+			(list (double (car L))) 	;then doubler sous-liste
+			(list (car L) (car L)) 	;else doubler
+		))
+		(double(cdr L))			; else élément suivant
+	)
+	L 					 ; else return liste		
 )
 )
 
-;pb : si élément non dans L -> renvoie longueur liste..
+
 (defun rang (X L)
-(if (endp L) 0
-(if (equal X (car L)) 1 (+ 1 (rang X (cdr L))))
-))
-
-;brouillon
-(defun ran (X L)
 (cond
-((equal X (car L)) 1)
-((endp L) 0)
-(T (let ((R (ran X (cdr L))))))
-((= R 0) 0)
-((+ 1 R))
+	((not (member X L)) 0)  ; X n'appartient pas à L =>0
+							; si fin de liste alors X=nil donc True.
+	((equal X (car L)) 1)	; si trouvé alors return 1
+	(t (+ 1 (rang X (cdr L))))	; sinon appel rang sur élément suivant
 )
 )
 
-;brouillon
-(defun occ (sym nested-list)
-  (cond
-    ((consp nested-list)
-     (+ (occ sym (car nested-list)) (occ sym (cdr nested-list)))
-     )
-    ((eq sym nested-list) 1)
-    (t 0)
-   )
+(defun tete (N L)
+(if (<= N (length L)); N<= nb. élément de L
+(if (> N 0 ); Nème élément pas atteint
+(cons (car L) (tete (- N 1) (cdr L))); then construction tete liste
+); avec i ème élément
+L); sinon return L
 )
 
 
 
+(defun doublon (L)
+(if (or (not (listp L)) (not (listp (cdr L))))
+L
+(let ((res (doublon (cdr L))))
+(if (equal (car L) (car res))
+res)
+(cons (car res) (doublon (cons (car L) (cdr res)))))))
+
+(defun db (L)
+(cond
+((or (not (listp L)) (not (listp (cdr L))) L))
+(t (let ((res (db (cdr L))))))
+((equal (car L) (car res)) res)
+(t (cons (car res) (db (cons (car L) (cdr res)))))
+)
+)
 
 
+
+(defun monEqual (X Y)
+(if (and (listp X) (listp Y)) ; if X ET Y list
+(equal X Y) 	; then appliquer equal
+(eq X Y)		; else appliquer eq
+)
+)
 
 
 ;Ex.2
