@@ -64,22 +64,19 @@ L); sinon return L
 
 
 
-(defun doublon (L)
-(if (or (not (listp L)) (not (listp (cdr L))))
-L
-(let ((res (doublon (cdr L))))
-(if (equal (car L) (car res))
-res)
-(cons (car res) (doublon (cons (car L) (cdr res)))))))
-
-(defun db (L)
+(defun elim(L)
 (cond
-((or (not (listp L)) (not (listp (cdr L))) L))
-(t (let ((res (db (cdr L))))))
-((equal (car L) (car res)) res)
-(t (cons (car res) (db (cons (car L) (cdr res)))))
-)
-)
+((and L (listp L)) ; L différent de nil
+    (setq a (car L))         ; a=ième élément
+    (setq new_list (list a)) ; new_list=liste sans doublon
+    (dolist (i (cdr L))     ; boucle sur les [i+1;N] éléments
+        (unless (eq a i)        ; i est doublon de a ??
+        (setq new_list (append new_list (list i)))) ; si non doublon alors ajout i à new_list
+    )
+    (cons (car new_list) (elim (cdr new_list))) ; new_list est une liste sans doublon par rapport à l'élément a.
+)                                               ; construction de new_list avec le reste de la liste => récursion avec l'élément i+1.
+(t L)   ;liste vide alors return la liste.
+))
 
 
 
