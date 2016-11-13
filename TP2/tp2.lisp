@@ -56,7 +56,7 @@
 			(if (not (member j etatsVisites :test #'equal)) (push j succ))	;Si pas déjà parcourus, ajout (Rmq! :(not member) =nil si j appartient)
 		)	;return succ
 	)
-	)
+)
 
 (successeurs (list 0 0) ())
 
@@ -88,42 +88,53 @@
 ;6
 (setq etat '(0 0))
 
+(defun backtrack(sol father initial)
+	(setq path nil) ; liste d'état parcouru bottoms-up
+	(push sol path)	; on cherche les états menant à 'etat'
+	(loop	; Il y a encore un père : pas encore état initial
+		(if (equal sol (car initial))
+     		(prog1	; Plus de père : backtrack fini
+     			(print path)
+				(return)
+			)
+			(progn
+				(setq sol (cadr (assoc sol father))) ;recherche du père
+   				(push sol path)	;ajout à liste des pères
+     		)
+		)
+	)
+)
+
 (defun rech-larg (etat)
 	(print "Debut programme")
 	(setq x 0)
 	(setq y 0)
-	(setq parcours nil)
-	(push etat parcours)
-	(setq a_visiter (successeurs etat parcours))
+	(setq parcours nil)	; état parcouru
+	(setq fath nil)		; liste de pères parcouru et d'un etat
+	(setq a_visiter (list etat))
 	(loop
 		(if a_visiter	;s'il existe encore des noeuds
 			(progn 
-				(dolist (i a_visiter)	;parcourir les noeuds d'une largeur
-					(if (not (member i parcours :test #'equal))	; i n'est pas déjà parcourus
-						(if (not (eq 2 (car i))) ; i différent de (2 y)
-							(progn 
-								(push i parcours) ; (setq parcours (append parcours (list i))) ;ajout élément parcourus
-								(pop a_visiter)	  ; enlève i des noeuds à parcourir
-								(setq a_visiter (append a_visiter (successeurs i parcours))) ; av= ([i+1;n], succ(i))
-							)																;    = reste de largeur en cours + fils de i
-							(progn				; i = (2 y)
-								(setq a_visiter nil)	; stop visite parcours
-								(setq sol (append (list i parcours)))	;stockage parcours solution
-							)
-						)
+				(setq ici (car a_visiter))
+				(push ici parcours)
+					(if (not (eq 2 (car ici))) ; ici différent de (2 y)
+						(progn 
+							(dolist (i (successeurs ici parcours))	;parcours les noeuds d'une largeur
+								;(push i parcours) ; (setq parcours (append parcours (list i))) ;ajout élément parcourus
+								(push (list i ici) fath) ; ajout (père et fils) dans liste
+								(setq a_visiter (append a_visiter (list i))) ; ajout i à la fin de la liste
+							)		
+						)	; ici = (2 y) : solution trouvé												
+						(backtrack ici fath (list etat))	
 					)
-				)
-			)
+					(pop a_visiter)	;enlève l'état visité
+			) ;fin
 			(progn
-				(print "Parcours termine")
-				(if sol ;si solution existe
-					(print sol)	;affiche sol
-					nil	;sinon nil
-				)
+				(print "Fin du programme")
 				(return)
 			)
-
 		)
-
 	)
 )
+
+(rech-larg '(0 0))
