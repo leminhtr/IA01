@@ -52,7 +52,6 @@
 		(dolist (i act)
 			(push (list (eval (car (nth (- i 1) app_action))) (eval (cadr (nth (- i 1) app_action)))) etat_tot) ;etat_tot = liste etat après 
 		)																										;evaluation des actions possibles
-		(print etat_tot)
 		(dolist (j etat_tot succ)
 			(if (not (member j etatsVisites :test #'equal)) (push j succ))	;Si pas déjà parcourus, ajout (Rmq! :(not member) =nil si j appartient)
 		)	;return succ
