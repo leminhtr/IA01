@@ -139,8 +139,7 @@
 )
 
 
-;6 structure file : push...
-; debug
+;6
 (setq etat '(0 0))
 
 (defun rech-larg (etat)
@@ -163,7 +162,7 @@
 							)																;    = reste de largeur en cours + fils de i
 							(progn				; i = (2 y)
 								(setq a_visiter nil)	; stop visite parcours
-								(setq sol (append i parcours))	;stockage parcours solution
+								(setq sol (append (list i parcours)))	;stockage parcours solution
 							)
 						)
 					)
@@ -182,8 +181,6 @@
 
 	)
 )
-
-;parcours 1 etat, push ses succ, parcours le 1er etat, push ses succ, parcours le 2nd etat,...
 
 
 
