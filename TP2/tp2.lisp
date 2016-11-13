@@ -149,13 +149,7 @@
 	(setq y 0)
 	(setq parcours nil)
 	(push etat parcours)
-	(print "parcours")
-	(print parcours)
-	(print "parcours")
 	(setq a_visiter (successeurs etat parcours))
-	(print "a")
-	(print a_visiter)
-	(print "b")
 	(loop
 		(if a_visiter	;s'il existe encore des noeuds
 			(progn 
@@ -165,14 +159,7 @@
 							(progn 
 								(push i parcours) ; (setq parcours (append parcours (list i))) ;ajout élément parcourus
 								(pop a_visiter)	  ; enlève i des noeuds à parcourir
-								(print "parcours2")
-								(print parcours)
-								(print i)
-								(print "parcours2")
 								(setq a_visiter (append a_visiter (successeurs i parcours))) ; av= ([i+1;n], succ(i))
-								(print "c")
-								(print a_visiter)
-								(print "d")
 							)																;    = reste de largeur en cours + fils de i
 							(progn				; i = (2 y)
 								(setq a_visiter nil)	; stop visite parcours
