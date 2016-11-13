@@ -76,8 +76,8 @@
 )
 
 
-;6 structure file : push...
-; debug
+;6
+
 (setq etat '(0 0))
 
 (defun rech-larg (etat)
@@ -86,15 +86,11 @@
 	(setq y 0)
 	(setq parcours nil)
 	(push etat parcours)
-	(print "parcours")
 	(print parcours)
-	(print "parcours")
 	(setq a_visiter (successeurs etat parcours))
-	(print "a")
 	(print a_visiter)
-	(print "b")
 	(loop
-		(if a_visiter	;s'il existe encore des noeuds
+		(if a_visiter	;s'il existe encore des états
 			(progn 
 				(dolist (i a_visiter)	;parcourir les noeuds d'une largeur
 					(if (not (member i parcours :test #'equal))	; i n'est pas déjà parcourus
@@ -102,18 +98,14 @@
 							(progn 
 								(push i parcours) ; (setq parcours (append parcours (list i))) ;ajout élément parcourus
 								(pop a_visiter)	  ; enlève i des noeuds à parcourir
-								(print "parcours2")
 								(print parcours)
 								(print i)
-								(print "parcours2")
 								(setq a_visiter (append a_visiter (successeurs i parcours))) ; av= ([i+1;n], succ(i))
-								(print "c")
 								(print a_visiter)
-								(print "d")
 							)																;    = reste de largeur en cours + fils de i
 							(progn				; i = (2 y)
 								(setq a_visiter nil)	; stop visite parcours
-								(setq sol (append i parcours))	;stockage parcours solution
+								(setq sol (append (list i parcours)))	;stockage parcours solution
 							)
 						)
 					)
@@ -132,8 +124,3 @@
 
 	)
 )
-
-;parcours 1 etat, push ses succ, parcours le 1er etat, push ses succ, parcours le 2nd etat,...
-
-
-;7
