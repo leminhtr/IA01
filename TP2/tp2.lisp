@@ -60,19 +60,29 @@
 
 (successeurs (list 0 0) ())
 
-;5 structure pile : pop...
-; /!\ il faut définir x=0 et y=0 au début de la fonction pour utiliser successeurs.
+;5 
 
-(setq etatsVisites nil)
+(defun rech-prof(etatInitial)
+  (setq etatsVisites '())
+  (rech-etat etatInitial etatsVisites)
+  )
 
-(defun rech-prof(etat)
-	(push etat etatsVisites)	;ajout etat visite (<=> chemin parcouru dans l'arbre)
-	(let (act successeurs(etat etatsVisites)) 
-		(dolist (i act))		;boucle sur tous les successeurs possibles
-		(rech-prof((car act)))	;reherche récursive sur l'élément i
-		etatsVisites			;return chemin parcouru
-		)
-)
+(defun rech-etat(branche etatsVisites)
+  (setq etat (car branche))
+  (push etat etatsVisites)
+  
+  (if (eq (car etat) '2) (print branche)
+
+      (dolist (i (successeurs etat etatsVisites) t)
+	(rech-etat (cons i branche) etatsVisites)
+	
+	)
+
+      ))
+
+
+
+(rech-prof '((0 0)))
 
 
 ;6
