@@ -3,6 +3,7 @@
 	;categorie = (assoc 'categorie (cddr liste)) = (categorie ...)
 	;temps = (.......................(cddr liste)) = (temps ...)
 
+;Mesure de quantité utilisé : Quantité simple (nombre de ...), gramme, mL
 
 (setq *BR*
 	'(
@@ -307,7 +308,7 @@
 			(ingredients
 				(pomme_de_terre 8)
 				(lardon 200)
-				(oignon 200)
+				(oignon 3)
 				(reblochon 1)
 				(huile_olive 30)
 				(ail 1)
