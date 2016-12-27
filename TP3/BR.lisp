@@ -1,14 +1,28 @@
 ; dans un dolist (i *BR*) : 
-	;ingrédients = (assoc 'ingredients (cddr liste)) = (INGREDIENTS (FARINE 150) (JAMBON 200)...)
-	;categorie = (assoc 'categorie (cddr liste)) = (categorie ...)
-	;temps = (.......................(cddr liste)) = (temps ...)
+	;(nom_recette (ingredient (..)) (categorie ...) (temps ...)) = (cdr *BR*)
+	;((ingredient (...)) (categorie ...) (temps ...)) = (cddr i)
+	;ingrédients = (assoc 'ingredients (cddr i)) = (INGREDIENTS (FARINE 150) (JAMBON 200)...)
+	;categorie = (assoc 'categorie (cddr i)) = (categorie ...)
+	;temps = (.......................(cddr i)) = (temps ...)
 
 ;Mesure de quantité utilisé : Quantité simple (nombre de ...), gramme, mL
+
+
+		; (
+		; 	(ingredients
+		; 		()
+		; 		()
+		; 	)
+		; 	(categorie dessert)
+		; 	(temps )
+		; )
+
+;39 recettes
 
 (setq *BR*
 	'(
 		;Entrées
-		(cake_jambon_olive 6; 1 quantité ou nb.personne? personne car impossible deviner quantité pour certaine recette
+		(cake_jambon_olive 6; 1 quantité ou nb.personne? personne car impossible deviner quantité obtenu pour certaine recette
 			(ingredients
 				(farine 150); g.
 				(jambon 200)
@@ -25,7 +39,7 @@
 			(ingredients
 				(pate_brisee 1); Qte
 				(creme_epaisse 200);mL
-				(concentre_tomate 1); 1 boite
+				(tomate 80); 1 boite
 				(thon 150);g
 				(fromage 50)
 				(oeuf 1)
@@ -317,6 +331,163 @@
 			(categorie plats)
 			(temps 75)
 		)
+		;Dessert
+		(riz_au_lait 5
+			(ingredients
+				(riz 100)
+				(lait 1000)
+				(sucre 100)
+			)
+			(categorie dessert)
+			(temps 125)
+		)
+		(tiramisu 8
+			(ingredients
+				(oeuf 3)
+				(sucre 100)
+				(sucre_vanille 1)
+				(mascarpone 250)
+				(biscuit_cuillere 24)
+				(cafe 500);mL
+				(cacao 30);g
+			)
+			(categorie dessert)
+			(temps 255)
+		)
+		(ramequins_au_chocolat 4
+			(ingredients
+				(chocolat 120)
+				(oeuf 3)
+				(sucre 80)
+				(beurre 35)
+				(farine 15)
+			)
+			(categorie dessert)
+			(temps 22)
+		)
+		(meringue_citron 6
+			(ingredients
+				(farine 250)
+				(beurre 125)
+				(sucre 70)
+				(oeuf 5)
+				(eau 50)
+				(sel 5)
+				(citron 4)
+				(maizena 10)
+				(levure_chimique 0.5)
+			)
+			(categorie dessert)
+			(temps 65)
+		)
+		(gateau_yaourt 4
+			(ingredients
+				(levure_chimique 0.5)
+				(yaourt 1)
+				(huile_colza 60)
+				(sucre 200)
+				(farine 210)
+				(oeuf 2)
+			)
+			(categorie dessert)
+			(temps 45)
+		)
+		(flan_patissier 8
+			(ingredients
+				(pate_brisee 1)
+				(oeuf 4)
+				(lait 1000)
+				(sucre 150)
+				(maizena 90)
+			)
+			(categorie dessert)
+			(temps 60)
+		)
+		(mousse_chocolat 4
+			(ingredients
+				(oeuf 3)
+				(chocolat 100)
+				(sucre_vanille 1)
+			)
+			(categorie dessert)
+			(temps 70)
+		)
+		(gateau_pomme 8
+			(ingredients
+				(sucre 220)
+				(sucre_vanille 1)
+				(oeuf 3)
+				(levure_chimique 0.5)
+				(farine 125)
+				(huile_colza 130)
+				(pomme 4)
+			)
+			(categorie dessert)
+			(temps 60)
+		)
+		(crumble_pomme 6
+			(ingredients
+				(pomme 6)
+				(farine 150)
+				(beurre 125)
+				(sucre_vanille 1)
+			)
+			(categorie dessert)
+			(temps 55)
+		)
+		(galette_des_rois 6
+			(ingredients
+				(pate_feuillete 2)
+				(poudre_amande 100); g
+				(sucre 75)
+				(oeuf 2)
+				(beurre 50)
+			)
+			(categorie dessert)
+			(temps 55)
+		)
+		(pancake 4
+			(ingredients
+				(farine 250)
+				(sucre 30)
+				(oeuf 2)
+				(levure_chimique 1)
+				(beurre 65)
+				(sel 5)
+				(lait 300)
+			)
+			(categorie dessert)
+			(temps 75)
+		)
+		(fondant_chocolat 8
+			(ingredients
+				(chocolat 200)
+				(beurre 100)
+				(sucre 100)
+				(oeuf 5)
+				(farine 50)
+			)
+			(categorie dessert)
+			(temps 35)
+		)
+		(tarte_aux_fraises
+			(ingredients
+				(farine 280)
+				(beurre 125)
+				(sucre 110)
+				(oeuf 3)
+				(eau 200)
+				(sel 5)
+				(lait 250)
+				(sucre_vanille 1)
+				(fraise 500)
+			)
+			(categorie dessert)
+			(temps 35)
+		)
+
+
+	)
 )
 
-
+ 
