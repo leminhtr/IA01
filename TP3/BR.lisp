@@ -1,28 +1,35 @@
+;Total : 39 recettes
+
 ; dans un dolist (i *BR*) : 
-	;(nom_recette (ingredient (..)) (categorie ...) (temps ...)) = (cdr *BR*)
-	;((ingredient (...)) (categorie ...) (temps ...)) = (cddr i)
-	;ingrédients = (assoc 'ingredients (cddr i)) = (INGREDIENTS (FARINE 150) (JAMBON 200)...)
-	;categorie = (assoc 'categorie (cddr i)) = (categorie ...)
-	;temps = (.......................(cddr i)) = (temps ...)
+	; La recette est i =(nom_de_la_recette nb_personne (ingredient (...)) (categorie ...) (temps ...)) 
+	; La categorie, le temps et la liste des ingrédients s'obtient par (cddr i) = ((ingredient (...)) (categorie ...) (temps ...))
+	; La liste des ingrédients  s'obtient par (assoc 'ingredients (cddr i)) = (INGREDIENTS (ingredient1 quantite1) (...) (ingredientn quantiten))
+	; La liste des ingrédients seuls s'obtient par (cdr (assoc 'ingredients (cddr i))) = (INGREDIENTS (ingredient1 quantite1) (...) (ingredientn quantiten)...)
+	; La categorie s'obtient par (assoc 'categorie (cddr i)) = (categorie nom_categorie)
+	; La categorie seule s'obtient par (cdr (assoc 'categorie (cddr i))) = (categorie nom_categorie)
+	; Le temps s'obtient par  (assoc 'temps (cddr i)) = (temps temps_minute)
+	; Le temps seul s'obtient par (cdr (assoc 'temps (cddr i)) = (temps temps_minute)
 
-;Mesure de quantité utilisé : Quantité simple (nombre de ...), gramme, mL
+; Les unités de quantité utilisé sont : Quantité simple (nombre de ...), gramme, mL
+
+; Une recette est défini par la structure suivante :
+
+; (nom_de_la_recette nb_personne
+; 	(ingredients
+; 		(ingredient1 quantite1)
+; 		(ingredient2 quantite2)
+; 		()
+; 	)
+; 	(categorie nom_categorie)
+; 	(temps temps_minute)
+; )
 
 
-		; (
-		; 	(ingredients
-		; 		()
-		; 		()
-		; 	)
-		; 	(categorie dessert)
-		; 	(temps )
-		; )
-
-;39 recettes
 
 (setq *BR*
 	'(
 		;Entrées
-		(cake_jambon_olive 6; 1 quantité ou nb.personne? personne car impossible deviner quantité obtenu pour certaine recette
+		(cake_jambon_olive 6; ;6personnes
 			(ingredients
 				(farine 150); g.
 				(jambon 200)
@@ -35,11 +42,11 @@
 			(temps 65); min.
 
 		)
-		(tarte_thon_tomate 6;6personnes
+		(tarte_thon_tomate 6
 			(ingredients
-				(pate_brisee 1); Qte
+				(pate_brisee 1); quantite
 				(creme_epaisse 200);mL
-				(tomate 80); 1 boite
+				(tomate 3)
 				(thon 150);g
 				(fromage 50)
 				(oeuf 1)
@@ -52,7 +59,7 @@
 				(yaourt 1)
 				(oeuf 1)
 				(farine 85)
-				(levure_chimique 0.5);sachet
+				(levure_chimique 0.5); sachet
 			)
 			(categorie entree)
 			(temps 25)
@@ -89,7 +96,7 @@
 				(fromage_chevre 100)
 				(oeuf 2)
 				(creme_liquide 100)
-				(gruyere 100); pas de quantité précisé -> arbitraire
+				(gruyere 100)
 			)
 			(categorie entree)
 			(temps 50)
@@ -97,7 +104,7 @@
 		(roulade_saumon_fume_asperges_sauce_crevette_chevre_frais 4
 			(ingredients
 				(asperges 220)
-				(saumon_fume 80);4 tranches=80g
+				(saumon_fume 80); 4 tranches=80g
 				(fromage_chevre 200)
 				(crevette 100)
 				(creme_liquide 200)
@@ -186,7 +193,7 @@
 		(poulet_basquaise 6
 			(ingredients
 				(poulet 1500)
-				(tomate 8);1kg
+				(tomate 8); 1kg
 				(poivron 700)
 				(oignon 3)
 				(ail 3)
@@ -212,7 +219,7 @@
 			(ingredients
 				(oignon 1)
 				(ail 1)
-				(viande_boeuf 400);gramme
+				(viande_boeuf 400)
 				(haricot_rouge 400)
 				(tomate 4)
 				(poudre_chili 10)
@@ -438,7 +445,7 @@
 		(galette_des_rois 6
 			(ingredients
 				(pate_feuillete 2)
-				(poudre_amande 100); g
+				(poudre_amande 100)
 				(sucre 75)
 				(oeuf 2)
 				(beurre 50)
