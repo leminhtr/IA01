@@ -103,7 +103,7 @@
 		)
 		(roulade_saumon_fume_asperges_sauce_crevette_chevre_frais 4
 			(ingredients
-				(asperges 220)
+				(asperge 220)
 				(saumon_fume 80); 4 tranches=80g
 				(fromage_chevre 200)
 				(crevette 100)
