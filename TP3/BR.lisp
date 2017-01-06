@@ -4,7 +4,7 @@
 	; La recette est i =(nom_de_la_recette nb_personne (ingredient (...)) (categorie ...) (temps ...)) 
 	; La categorie, le temps et la liste des ingrédients s'obtient par (cddr i) = ((ingredient (...)) (categorie ...) (temps ...))
 	; La liste des ingrédients  s'obtient par (assoc 'ingredients (cddr i)) = (INGREDIENTS (ingredient1 quantite1) (...) (ingredientn quantiten))
-	; La liste des ingrédients seuls s'obtient par (cdr (assoc 'ingredients (cddr i))) = (INGREDIENTS (ingredient1 quantite1) (...) (ingredientn quantiten)...)
+	; La liste des ingrédients seuls s'obtient par (cdr (assoc 'ingredients (cddr i))) = ((ingredient1 quantite1) (...) (ingredientn quantiten)...)
 	; La categorie s'obtient par (assoc 'categorie (cddr i)) = (categorie nom_categorie)
 	; La categorie seule s'obtient par (cdr (assoc 'categorie (cddr i))) = (categorie nom_categorie)
 	; Le temps s'obtient par  (assoc 'temps (cddr i)) = (temps temps_minute)
@@ -492,8 +492,6 @@
 			(categorie dessert)
 			(temps 35)
 		)
-
-
 	)
 )
 

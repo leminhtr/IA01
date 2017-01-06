@@ -3,6 +3,7 @@
 (setq *BF* NIL)
 (setq *QuestionOK* T)
 (setq *Categorie* NIL)
+(setq *Temps* NIL)
 
 ; Chargement de la base de fait et des fonctions.
 (load "BR.lisp")
