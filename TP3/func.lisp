@@ -109,16 +109,19 @@
 			; nil sinon
 		; Sinon sortie
 	(if (not (null (car liste)))	; si la liste est non vide
-		(dolist (ingr liste)
-			(print ingr)	;affiche element liste...
-		)
-		(print "L'element voulu est-il dans cette liste ?")
 		(let 
-			((quest (oui_non)))
-			(if quest	;si oui
+			((quest nil))
+
+			(dolist (ingr liste)
+				(print ingr)	;affiche element liste...
+			)
+			(print "L'element voulue est-il dans la liste ?")
+			(setq quest (oui_non))
+
+			(if quest	
 			;un élément nous interesse donc on le demande
 				(progn
-					(print "Veuillez recopier l'element en toute lettre.")
+					(print "Veuillez saisir l'element en toute lettre.")
 
 					; convertit input en valeur : "string" -> string
 					(setq quest (read (make-string-input-stream (read-line))))
@@ -319,7 +322,6 @@
 		
 	)
 )
-
 
 (defun get_ingr (liste)
 	(let 
