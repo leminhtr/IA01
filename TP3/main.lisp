@@ -1,5 +1,4 @@
 ; Création des variables globales
-(setq *BR* NIL)
 (setq *BF* NIL)
 (setq *QuestionOK* T)
 (setq *Categorie* NIL)

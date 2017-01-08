@@ -24,8 +24,6 @@
 ; 	(temps temps_minute)
 ; )
 
-
-
 (setq *BR*
 	'(
 		;Entrées
@@ -494,5 +492,3 @@
 		)
 	)
 )
-
- 

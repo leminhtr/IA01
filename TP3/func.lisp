@@ -41,7 +41,6 @@
 	)
 )
 
-
 (defun ajoutCategorie (cat)
 	(if (member '$categorie cat)
 		(progn
@@ -50,7 +49,6 @@
 		)
 	)
 )
-
 
 (defun choixTemps ()	; !!!!!!!! BUG : Si on rentre une string ça plante !!!!!!!!!!!!!!
 	; Demander temps disponible + ajout
@@ -64,7 +62,6 @@
 		(ajoutTemps (list '$temps duree))
 	)
 )
-
 
 (defun ajoutTemps (duree)
 	; Ajoute duree à *Temps*, retourne le fait ajouté si possible
@@ -125,13 +122,13 @@
 			(dolist (ingr liste)
 				(print ingr)	;affiche element liste...
 			)
-			(print "L'element voulue est-il dans la liste ?")
+			(print "L'element voulu est-il dans cette liste ?")
 			(setq quest (oui_non))
 
 			(if quest	
 			;un élément nous interesse donc on le demande
 				(progn
-					(print "Veuillez saisir l'element en toute lettre.")
+					(print "Veuillez recopier l'element en toute lettre.")
 
 					; convertit input en valeur : "string" -> string
 					(setq quest (read (make-string-input-stream (read-line))))
@@ -157,15 +154,38 @@
 	)
 )
 
-(defun cherche_lettre_ingredient_BR
+(defun cherche_lettre_ingredient_BR ()	;TESTE ET APPROUVE
+	; Retourne une liste de tous les ingredients de la BR commençant par une lettre
 	; Demande à l'utilisateur de taper la 1ère lettre de l'ingredient
-		; Verifie si non lettre != nombre
 		; Si ok alors
 			; dolist sur la BR
-				; si trouvé lettre alors (push result) 
+				; si lettre trouvé alors on ajoute l'ingredient sauf s'il est déjà présent
 			; return result
+	(print "Veuillez taper la premiere lettre de l'ingredient :")
 
+	(let
+		((lettre nil) (result nil))
+		
+		(setq lettre (string-upcase (read-line)))
+		(loop while (not (eq (length lettre) 1)) do; tant que la réponse n'est pas correcte
+			(print "Erreur. Veuillez saisir une lettre uniquement.")
+			(setq lettre (string-upcase (read-line)))	; Reessaye
+		)
+
+		(dolist (recette_i *BR*)
+			; recette_i=(nom_de_la_recette nb_personne (ingredient (...)) (categorie ...) (temps ...)) 
+			(dolist (ingredient_i (cdr (assoc 'ingredients (cddr recette_i))))
+			; ingredient_i= (ingredient quantite)
+				(if (equal (char lettre 0) (char (symbol-name (car ingredient_i)) 0))
+					(if (not (member (car ingredient_i) result))
+						(push (car ingredient_i) result)
+					)
+				)
+			)
+		)
+		result
 	)
+)
 
 (defun choixIngredient ()
 	; Demande à l'utilisateur tous les ingredients et leurs quantités à l'utilisateur
@@ -202,8 +222,7 @@
 					(progn
 						(setq result_qte (choixQuantite))
 						(print "Confirmez-vous posseder cet ingredient et cette quantite ?") ; confirmation avant ajout BF
-						(princ result_ingr)
-						(princ result_qte)
+						(princ result_ingr) (princ " ") (princ result_qte)
 						(setq quest (oui_non))
 						(if quest	; si oui alors
 							(progn
@@ -224,20 +243,12 @@
 				)
 			)
 		)
-		(print "Voulez-vous ajoute un nouvel ingredient ?")
+		(print "Voulez-vous ajouter un nouvel ingredient ?")
 		(if (oui_non)
 			(choixIngredient)
 			(return-from choixIngredient)
 			)
 	)
-)
-
-(defun cherche_lettre_ingredient_BR
-		;renvoie liste ingredients en cherchant lettre
-		(print "Veuillez taper la premiere lettre de l'ingredient :")
-
-
-
 )
 
 (defun pushBF (fait)	;TESTE ET APPROUVE
@@ -275,16 +286,3 @@
 		bool	;return bool
 	)
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
