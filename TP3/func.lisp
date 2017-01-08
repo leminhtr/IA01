@@ -374,26 +374,24 @@
 
 (defun min_ingredient (list_recette)
 	(let ((min 9999) (result nil))
-	(dolist (i list_recette result)
-		(if (< (length (cdr (assoc 'ingredients (cddr i)))) min)
-			(progn 
-			(setq min (length (cdr (assoc 'ingredients (cddr i)))))
-			(setq result i))
+		(dolist (i list_recette result)
+			(if (< (length (cdr (assoc 'ingredients (cddr i)))) min)
+				(progn 
+				(setq min (length (cdr (assoc 'ingredients (cddr i)))))
+				(setq result i))
+			)
 		)
-	)
-
-
 	); fin let
 ) ; Fin min_ingredient
 
 (defun min_temps (list_recette)
 	(let ((min 9999) (result nil))
-	(dolist (i list_recette result)
-		(if (< (cadr (assoc 'temps (cddr i))) min)
-			(progn 
-			(setq min (cadr (assoc 'temps (cddr i))))
-			(setq result i))
+		(dolist (i list_recette result)
+			(if (< (cadr (assoc 'temps (cddr i))) min)
+				(progn 
+				(setq min (cadr (assoc 'temps (cddr i))))
+				(setq result i))
+			)
 		)
-	)
 	)
 )

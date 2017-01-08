@@ -67,7 +67,6 @@
 				(fromage_chevre 200)
 				(pate_feuillete 1)
 				(oeuf 1)
-
 			)
 			(categorie entree)
 			(temps 35)
