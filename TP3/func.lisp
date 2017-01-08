@@ -67,7 +67,7 @@
 	)
 )
 
-(defun oui_non ()	;TESTE ET APPROUVE
+(defun oui_non ()
 	; demande à l'utilisateur oui ou non
 		; test la validité de la réponse
 		; renvoie t si oui, nil si non.
@@ -147,7 +147,7 @@
 	)
 )
 
-(defun cherche_lettre_ingredient_BR ()	;TESTE ET APPROUVE
+(defun cherche_lettre_ingredient_BR ()
 	; Retourne une liste de tous les ingredients de la BR commençant par une lettre
 	; Demande à l'utilisateur de taper la 1ère lettre de l'ingredient
 		; Si ok alors
@@ -244,7 +244,7 @@
 	)
 )
 
-(defun pushBF (fait)	;TESTE ET APPROUVE
+(defun pushBF (fait)
 	; Ajoute un fait ($x n) à la BF
 	(if (listp fait) ; si le fait est une liste
 		(if (eq (length fait) 2)	; de taille 2
