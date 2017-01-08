@@ -6,7 +6,7 @@
 	; La liste des ingrédients  s'obtient par (assoc 'ingredients (cddr i)) = (INGREDIENTS (ingredient1 quantite1) (...) (ingredientn quantiten))
 	; La liste des ingrédients seuls s'obtient par (cdr (assoc 'ingredients (cddr i))) = ((ingredient1 quantite1) (...) (ingredientn quantiten)...)
 	; La categorie s'obtient par (assoc 'categorie (cddr i)) = (categorie nom_categorie)
-	; La categorie seule s'obtient par (cdr (assoc 'categorie (cddr i))) = (categorie nom_categorie)
+	; La categorie seule s'obtient par (cdr (assoc 'categorie (cddr i))) = (nom_categorie)
 	; Le temps s'obtient par  (assoc 'temps (cddr i)) = (temps temps_minute)
 	; Le temps seul s'obtient par (cdr (assoc 'temps (cddr i)) = (temps temps_minute)
 
@@ -161,7 +161,7 @@
 			(categorie entree)
 			(temps 30)
 		)
-		;Plats
+		;plat
 		(filet_mignon_en_croute 6
 			(ingredients
 				(filet_mignon_porc 2)
@@ -171,7 +171,7 @@
 				(oignon 2)
 				(oeuf 2)
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 60)
 		)
 		(quiche_lorraine 4
@@ -185,7 +185,7 @@
 				(sel 10)
 
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 60)
 		)
 		(poulet_basquaise 6
@@ -198,7 +198,7 @@
 				(huile_olive 90)
 				(sel 10)
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 60)
 		)
 		(gratin_dauphinois 6
@@ -210,7 +210,7 @@
 				(lait 1000)
 				(sel 10)
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 85)
 		)
 		(chili_con_carne 3
@@ -224,7 +224,7 @@
 				(sel 10)
 				(huile_olive 30)
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 35)
 		)
 		(pates_carbonara 4
@@ -236,7 +236,7 @@
 				(lardon 250)
 				(oignon 1)
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 20)
 		)
 		(saucisse_lentille 4
@@ -247,7 +247,7 @@
 				(carotte 1)
 				(lardon 100)
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 55)
 		)
 		(poulet_curry_oignon 4
@@ -258,7 +258,7 @@
 				(sel 10)
 				(curry 10)
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 20)
 		)
 		(roti_porc_miel_pomme 4
@@ -269,7 +269,7 @@
 				(echalote 1)
 				(sel 10)
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 75)
 		)
 		(tajine_poulet 4
@@ -284,7 +284,7 @@
 				(huile_olive 20)
 				(eau 200)
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 90)
 		)
 		(lasagnes 4
@@ -299,7 +299,7 @@
 				(huile_olive 20)
 				(sel 10)
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 125)
 		)
 		(gigot_agneau 6
@@ -309,7 +309,7 @@
 				(beurre 100)
 				(sel 10)
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 95)
 		)
 		(riz_curry 4
@@ -320,7 +320,7 @@
 				(eau 600)
 				(huile_olive 30)
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 30)
 		)
 		(tartiflette 4
@@ -333,7 +333,7 @@
 				(ail 1)
 				(sel 10)
 			)
-			(categorie plats)
+			(categorie plat)
 			(temps 75)
 		)
 		;Dessert
@@ -475,7 +475,7 @@
 			(categorie dessert)
 			(temps 35)
 		)
-		(tarte_aux_fraises
+		(tarte_aux_fraises 4 
 			(ingredients
 				(farine 280)
 				(beurre 125)
